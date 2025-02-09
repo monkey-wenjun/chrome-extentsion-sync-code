@@ -54,48 +54,43 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     console.log('开始请求验证码，URL:', message.url);
     console.log('使用的API Key:', message.apiKey);
     
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', message.url);
-    xhr.setRequestHeader('Authorization', message.apiKey);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.onload = function() {
-      if (xhr.status === 200) {
-        const data = JSON.parse(xhr.responseText);
-        console.log('解析后的响应数据:', data);
-        
-        // 添加解密处理
-        if (data.message) {
-          console.log('开始解密消息...');
-          decryptData(data.message)
-            .then(decryptedMessage => {
-              if (decryptedMessage) {
-                console.log('解密成功:', decryptedMessage);
-                sendResponse({ success: true, data: decryptedMessage });
-              } else {
-                console.error('解密失败');
-                sendResponse({ success: false, error: '解密失败' });
-              }
-            })
-            .catch(error => {
-              console.error('解密失败:', error);
-              sendResponse({ success: false, error: '解密失败' });
-            });
-        } else {
-          console.error('无效的响应格式，缺少message字段');
-          sendResponse({ success: false, error: '无效的响应格式' });
-        }
-      } else {
-        console.error('请求失败，状态码:', xhr.status);
-        const errorMessage = xhr.statusText || '未知网络错误';
-        sendResponse({ success: false, error: `网络请求失败: ${errorMessage}` });
+    // 改用 Fetch API 代替 XMLHttpRequest
+    fetch(message.url, {
+      method: 'GET',
+      headers: {
+        'Authorization': message.apiKey,
+        'Content-Type': 'application/json'
       }
-    };
-    xhr.onerror = function() {
-      console.error('请求失败');
-      const errorMessage = '未知网络错误';
-      sendResponse({ success: false, error: `网络请求失败: ${errorMessage}` });
-    };
-    xhr.send();
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`网络请求失败: ${response.statusText}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('解析后的响应数据:', data);
+      
+      if (data.message) {
+        console.log('开始解密消息...');
+        return decryptData(data.message)
+          .then(decryptedMessage => {
+            if (decryptedMessage) {
+              console.log('解密成功:', decryptedMessage);
+              sendResponse({ success: true, data: decryptedMessage });
+            } else {
+              throw new Error('解密失败');
+            }
+          });
+      } else {
+        throw new Error('无效的响应格式');
+      }
+    })
+    .catch(error => {
+      console.error('请求失败:', error);
+      sendResponse({ success: false, error: error.message });
+    });
+
     return true; // 保持消息通道开放
   }
 }); 
