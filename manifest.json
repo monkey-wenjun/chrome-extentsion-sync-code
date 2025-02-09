@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "验证码同步",
+  "version": "1.0",
+  "description": "验证码同步",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "clipboardWrite",
+    "https://api.awen.me/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "options_page": "options.html",
+  "action": {
+    "default_popup": "options.html"
+  }
+} 

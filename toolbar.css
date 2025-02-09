@@ -1,0 +1,42 @@
+#verification-toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f8f9fa;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  z-index: 2147483647;
+  display: flex;
+  align-items: center;
+  pointer-events: auto !important;
+}
+
+#get-verification-btn {
+  padding: 5px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  pointer-events: auto !important;
+}
+
+#get-verification-btn:hover {
+  background-color: #0056b3;
+}
+
+body {
+  margin-top: 50px !important;
+}
+
+#verification-toolbar * {
+  pointer-events: auto !important;
+  z-index: 2147483647 !important;
+}
+
+#verification-toolbar {
+  transform: translateZ(0);
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+} 

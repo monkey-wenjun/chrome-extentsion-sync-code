@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>设置</title>
+  <style>
+    body {
+      padding: 20px;
+      width: 400px;  /* 弹出窗口固定宽度 */
+      min-height: 200px;
+      background: white;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    input {
+      width: 300px;
+      padding: 5px;
+    }
+    .button-group {
+      display: flex;
+      gap: 10px;
+    }
+    button {
+      padding: 8px 15px;
+      cursor: pointer;
+    }
+    #getCode {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+    #save {
+      background-color: #2196F3;
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <h2>设置</h2>
+  <div class="form-group">
+    <label for="apiUrl">HTTP接口地址：</label>
+    <input type="url" id="apiUrl" placeholder="请输入接口地址">
+  </div>
+  <div class="form-group">
+    <label for="apiKey">API密钥：</label>
+    <input type="password" id="apiKey" placeholder="请输入API密钥">
+  </div>
+  <div class="button-group">
+    <button id="getCode">获取验证码</button>
+    <button id="save">保存设置</button>
+  </div>
+  <script src="options.js"></script>
+</body>
+</html> 
