@@ -36,4 +36,11 @@
 3. 验证码将自动复制到剪贴板
 4. 在需要的地方粘贴使用
 
-## 项目结构 
+## 客户端 
+
+https://github.com/monkey-wenjun/auto_sync_captcha
+
+
+## 服务端
+
+https://github.com/monkey-wenjun/sync_code_server
