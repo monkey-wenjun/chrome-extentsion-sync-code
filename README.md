@@ -23,7 +23,7 @@
 
 4. 点击“加载已解压的扩展程序”，选择项目目录
 
-直接Chrome 扩展安装 https://chromewebstore.google.com/detail/%E9%AA%8C%E8%AF%81%E7%A0%81%E5%90%8C%E6%AD%A5/pdpfmpcnhendfnibildbbffifinmeeap
+或者直接Chrome 扩展安装 https://chromewebstore.google.com/detail/%E9%AA%8C%E8%AF%81%E7%A0%81%E5%90%8C%E6%AD%A5/pdpfmpcnhendfnibildbbffifinmeeap
 
 ## 配置说明
 
